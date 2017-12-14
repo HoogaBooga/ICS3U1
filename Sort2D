@@ -1,0 +1,47 @@
+
+public class Sort2D {
+
+	public static void main(String[] args) {
+		int twoD[][]= {
+				{2, 3, 5,},
+				{9, 2, 3 },
+				{6, 3, 5 },
+
+		};
+		
+		int oneD[]=new int [twoD.length*twoD[0].length];
+		int l=0,q=0;
+		int temp;
+
+		for (byte r=0; r<twoD.length;r++){
+			for (byte k=0;k<twoD[r].length;k++){
+				oneD[l]=twoD[r][k];
+				l++;
+			}
+		}
+
+		for (byte s=0; s<oneD.length-1;s++){
+			for (byte t=0;t<(oneD.length-1)-s;t++){
+				if (oneD[t]>oneD[t+1]){
+					temp=oneD[t];
+					oneD[t]=oneD[t+1];
+					oneD[t+1]=temp;
+				}
+			}
+		}
+
+		for (byte g=0;g<twoD.length;g++){
+			for (byte y=0; y<twoD[g].length;y++){
+				twoD[g][y]=oneD[q];
+				q++;
+			}
+		}
+
+		for (byte g=0;g<twoD.length;g++){
+			for (byte y=0; y<twoD[g].length;y++){
+				System.out.println(twoD[g][y]);
+			}
+
+		}
+	}
+}
