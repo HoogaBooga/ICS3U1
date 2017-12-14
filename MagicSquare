@@ -1,0 +1,92 @@
+
+public class MagicSquare {
+
+	public static void main(String[] args) {
+		int box[][]= {
+				{2,2,2,2,2},
+				{2,2,2,2,2},
+				{2,2,2,2,2},
+				{2,2,2,2,2},
+				{2,2,2,2,2},
+		};
+		boolean horTrue,verTrue,diaTrue,magic;
+
+		horTrue=horSum(box);
+		verTrue=verSum(box);
+		diaTrue=diaSum(box);
+		magic=magic(horTrue,verTrue,diaTrue);
+		
+		System.out.println(horTrue);
+		System.out.println(verTrue);
+		System.out.println(diaTrue);
+		System.out.println(magic);
+		
+		if (magic){
+			System.out.println("Wau!!! magik!");
+		}
+		
+		else{
+			System.out.println("Naut majik, sry");
+			
+		}
+	}
+	public static boolean horSum(int box[][]){
+		int horSum[]=new int[box.length];
+		boolean horTrue=true;
+		for (byte s=0;s<box.length;s++){
+			for (byte d=0; d<box[s].length;d++){
+				horSum[s]+=box[s][d];
+			}
+		}
+		for (byte k=0;k<box.length;k++){
+			if (k<4){
+				if (horSum[k]!=horSum[k+1]){
+					horTrue=false;
+				}
+			}
+		}
+		return horTrue;
+	}
+	public static boolean verSum (int box[][]){
+		int verSum[]=new int[box.length];
+		boolean verTrue=true;
+		for (byte s=0;s<box.length;s++){
+			for (byte d=0; d<box[s].length;d++){
+				verSum[s]+=box[d][s];
+			}
+		}
+		for (byte k=0;k<box.length;k++){
+			if (k<4){
+				if (verSum[k]!=verSum[k+1]){
+					verTrue=false;
+				}
+			}
+		}
+		return verTrue;
+	}
+
+	public static boolean diaSum (int box[][]){
+		int diaSum[]=new int[2];
+		boolean diaTrue=true;
+
+		for (byte s=0;s<box.length;s++){
+			diaSum[0]+=box[s][s];
+		}
+
+		for (int t=box.length-1;t>=0;t--){
+			diaSum[1]+=box[t][t];
+		}
+		if (diaSum[0]!=diaSum[1]){
+			diaTrue=false;
+		}
+		return diaTrue;
+	}
+	
+	public static boolean magic (boolean horTrue, boolean verTrue, boolean diaTrue){
+		boolean magic=false;
+		if (horTrue&&verTrue&&diaTrue){
+			magic=true;
+		}
+		return magic;
+	}
+}
