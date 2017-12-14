@@ -1,0 +1,27 @@
+
+public class FindMode {
+	public static void main(String[] args) {
+		int[] n=  {1,2,2,3,9,9,0,5,9,3};
+		int temp;
+		for (byte t=0;t<n.length-1;t++){
+			for (byte s=0; s<(n.length-1)-t;s++){
+				if (n[t]>n[t+1]){
+				temp=n[t];
+				n[t]=n[t+1];
+				n[t+1]=temp;
+				}
+			}
+		}
+		int[] counts = new int[n.length];
+		int mode =0;
+		int maxCounts=0;
+		for (byte i=0; i<n.length;i++){
+			counts[n[i]]++;
+			if (maxCounts<counts[n[i]]){
+				maxCounts=counts[n[i]];
+				mode=n[i];
+			}
+		}
+		System.out.println(mode);
+	}
+}
